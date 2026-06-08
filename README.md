@@ -2,7 +2,7 @@
 ### 🛡️ POWERED BY X
 ###  TEAM X🛡️
 
-**HCO Steganography** is a professional-grade, **end-to-end encrypted** messaging framework designed for covert communication. This tool allows you to encrypt sensitive messages using **AES-256** standards and generate a secure link that can only be decrypted with your private key.
+**team X jodyt** is a professional-grade, **end-to-end encrypted** messaging framework designed for covert communication. This tool allows you to encrypt sensitive messages using **AES-256** standards and generate a secure link that can only be decrypted with your private key.
 
 ---
 
