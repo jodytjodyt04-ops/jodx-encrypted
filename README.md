@@ -25,7 +25,7 @@ python jodx.py
 
 ```
 ### 💡 HOW TO USE
-Run the tool using python HCO-Steganography.py.
+Run the tool using python jodx.py.
 Follow the security lock screen to verify access.
 Select option 1 to encrypt your message.
 Set a strong password (this is your decryption key).
