@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JODX PRIVATE WEBSITE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body { background: #000; color: #0f0; font-family: monospace; text-align: center; padding-top: 50px; }
+        input { background: #222; color: #0f0; border: 1px solid #0f0; padding: 10px; width: 80%; max-width: 300px; }
+        button { background: #0f0; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🔒 JODX PRIVATE WEBSITE</h1>
+    <input type="password" id="pass" placeholder="Enter Access Password"><br>
+    <button onclick="decrypt()">Decrypt Message</button>
+    <h2 id="msg"></h2>
+
+    <script>
+        function decrypt() {
+            let hash = decodeURIComponent(window.location.hash.substring(6));
+            let pass = document.getElementById('pass').value;
+            // Python ke saath sync karne ke liye PBKDF2
+            let key = CryptoJS.PBKDF2(pass, "salt", { keySize: 256/32, iterations: 10000 });
+            try {
+                let data = CryptoJS.enc.Base64.parse(hash);
+                let iv = CryptoJS.lib.WordArray.create(data.words.slice(0, 4));
+                let encrypted = CryptoJS.lib.WordArray.create(data.words.slice(4));
+                let decrypted = CryptoJS.AES.decrypt({ciphertext: encrypted}, key, {
+                    iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7
+                });
+                let msg = decrypted.toString(CryptoJS.enc.Utf8);
+                document.getElementById('msg').innerText = msg ? "SECRET: " + msg : "Wrong Password!";
+            } catch(e) { document.getElementById('msg').innerText = "Decryption Failed!"; }
+        }
+    </script>
+</body>
+</html>
